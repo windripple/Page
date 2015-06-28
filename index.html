@@ -9,14 +9,16 @@
 	<link rel="stylesheet" type="text/css" href="media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="resources/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="resources/demo.css">
-	<style type="text/css" class="init">
-
-	</style>
 	<script type="text/javascript" language="javascript" src="media/js/jquery.js"></script>
 	<script type="text/javascript" language="javascript" src="media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="resources/demo.js"></script>
+	 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+	
 	<script type="text/javascript" language="javascript" class="init">
+
 
 $(document).ready(function() {
 	$('#data').dataTable( {
@@ -37,23 +39,47 @@ $(document).ready(function() {
 			{ "data": "刪除註記" }
 		]
 	} );
-} );
+
+
+	 	$('#data2').dataTable( {
+		"ajax": "data/gistfile.json",
+		"columns": [
+		    { "data": "醫院" },
+			{ "data": "社福中心" },
+			{ "data": "辦公室電話" },
+			{ "data": "主任" },
+			{ "data": "主任手機" },
+			{ "data": "附註" }
+		]
+	} );
 
       $.ajax({url: "https://gist.githubusercontent.com/tony1223/098e45623c73274f7ae3/raw", success: function(result){
             var obj = $.parseJSON(result);
             $("#lastmodify").html("最後更新時間: " + obj.lastmodify +"<br/>資料來源：北市府資訊局");
         }});
 
+
+
+   $( "#tabs" ).tabs();
+     
+} );
+
+
 	</script>
 </head>
 
 <body class="dt-example">
-	<div class ="container">
-		<section>
-			<div id = "lastmodify"></div>
-		</br>
 
-			<table id="data" class="display" cellspacing="0" width="100%">
+		<div style="font-size:16px;"  id = "lastmodify"></div>
+	</br>
+
+	<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">傷者清單</a></li>
+    <li><a href="#tabs-2">醫院與社福中心聯絡資料</a></li>
+  </ul>
+  <div id="tabs-1">
+   <table id="data" class="display" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						
@@ -92,11 +118,43 @@ $(document).ready(function() {
 					</tr>
 				</tfoot>
 			</table>
+  </div>
+  <div id="tabs-2">
+<table id="data2" class="display" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						
+						<th>醫院</th>
+						<th>社福中心</th>
+						<th>辦公室電話</th>
+						<th>主任</th>
+						<th>主任手機</th>
+						<th>附註</th>
+						
+					</tr>
+				</thead>
 
-			
+				<tfoot>
+					<tr>
+						
+						<th>醫院</th>
+						<th>社福中心</th>
+						<th>辦公室電話</th>
+						<th>主任</th>
+						<th>主任手機</th>
+						<th>附註</th>
+						
+					</tr>
+				</tfoot>
+			</table>
 
-		</section>
+  </div>
+ 
+</div>
+
 	</div>
+
+
 
 </body>
 </html>
