@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>八仙轉診紀錄</title>
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="resources/demo.css">
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="media/js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" language="javascript" src="resources/syntax/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="resources/demo.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+
+$(document).ready(function() {
+	$('#data').dataTable( {
+		"ajax": "https://gist.githubusercontent.com/tony1223/098e45623c73274f7ae3/raw",
+		"columns": [
+		    { "data": "編號" },
+			{ "data": "縣市別" },
+			{ "data": "收治單位" },
+			{ "data": "檢傷編號" },
+			{ "data": "姓名" },
+			{ "data": "性別" },
+			{ "data": "國籍" },
+			{ "data": "年齡" },
+			{ "data": "醫療檢傷" },
+			{ "data": "救護檢傷" },
+			{ "data": "即時動向" },
+			{ "data": "轉診要求" },
+			{ "data": "刪除註記" }
+		]
+	} );
+} );
+
+      $.ajax({url: "https://gist.githubusercontent.com/tony1223/098e45623c73274f7ae3/raw", success: function(result){
+            var obj = $.parseJSON(result);
+            $("#lastmodify").html("最後更新時間: " + obj.lastmodify +"<br/>資料來源：北市府資訊局");
+        }});
+
+	</script>
+</head>
+
+<body class="dt-example">
+	<div class ="container">
+		<section>
+			<div id = "lastmodify"></div>
+		</br>
+
+			<table id="data" class="display" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						
+						<th>編號</th>
+						<th>縣市別</th>
+						<th>收治單位</th>
+						<th>檢傷編號</th>
+						<th>姓名</th>
+						<th>性別</th>
+						<th>國籍</th>
+						<th>年齡</th>
+						<th>醫療檢傷</th>
+						<th>救護檢傷</th>
+						<th>即時動向</th>
+						<th>轉診要求</th>
+						<th>刪除註記</th>
+					</tr>
+				</thead>
+
+				<tfoot>
+					<tr>
+						
+						<th>編號</th>
+						<th>縣市別</th>
+						<th>收治單位</th>
+						<th>檢傷編號</th>
+						<th>姓名</th>
+						<th>性別</th>
+						<th>國籍</th>
+						<th>年齡</th>
+						<th>醫療檢傷</th>
+						<th>救護檢傷</th>
+						<th>即時動向</th>
+						<th>轉診要求</th>
+						<th>刪除註記</th>
+					</tr>
+				</tfoot>
+			</table>
+
+			
+
+		</section>
+	</div>
+
+</body>
+</html>
