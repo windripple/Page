@@ -1,158 +1,75 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+  <head>
+    <meta charset="utf-8">
+    <title>Parse JavaScript Todo App</title>
 
-	<title>八仙轉診紀錄</title>
-	<link rel="stylesheet" type="text/css" href="media/css/jquery.dataTables.css">
-	<link rel="stylesheet" type="text/css" href="resources/syntax/shCore.css">
-	<link rel="stylesheet" type="text/css" href="resources/demo.css">
-	<script type="text/javascript" language="javascript" src="media/js/jquery.js"></script>
-	<script type="text/javascript" language="javascript" src="media/js/jquery.dataTables.js"></script>
-	<script type="text/javascript" language="javascript" src="resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="resources/demo.js"></script>
-	 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  </head>
 
-	
-	<script type="text/javascript" language="javascript" class="init">
+  <body>
+      <script>
+          Parse.$ = jQuery;
+          Parse.initialize("pGiNczoovDgDr8hOUMdG2D6dLzYxK3nFNIvuvFR7",
+                 "yI13wkVZtoBLlazdaJ5wDEjQXusVfD6Pwj5KnkGf");
 
+          var innerhtml = '';
+          var usd = Parse.Object.extend("userdata_Event");
+          var query = new Parse.Query(usd);
+          query.limit(10000);
+          query.greaterThanOrEqualTo("Valuable", 2);
+          query.find({
+              success: function (list) {
+                  for (var i = 0; i < list.length; i++) {
+                      var obj = list[i];
+                      var modelid = obj.get('CardModelID');
+                      var gacha1 = obj.get('freeGachaCard');
+                      var gacha2 = obj.get('GachaCard1');
+                      var gacha3 = obj.get('GachaCard2');
+                      var sale = obj.get('Sale');
+                      var va = obj.get('Valuable');
+                      var objectid = obj.get('objectId');
+                      if (gacha2 != null && gacha3 != null) {
+                          if (gacha2.substring(0, 1) == "4" && gacha3.substring(0, 1) == "4") {
 
-$(document).ready(function() {
-	$('#data').dataTable( {
-		"ajax": "https://gist.githubusercontent.com/tony1223/098e45623c73274f7ae3/raw",
-		"columns": [
-		    { "data": "縣市別" },
-		    { "data": "收治單位" },
-			{ "data": "姓名" },
-			{ "data": "檢傷編號" },
-			{ "data": "性別" },
-			{ "data": "國籍" },
-			{ "data": "年齡" },
-			{ "data": "醫療檢傷" },
-			{ "data": "救護檢傷" },
-			{ "data": "即時動向" },
-			{ "data": "轉診要求" },
-			{ "data": "刪除註記" }
-		]
-	} );
+                              var modellist = modelid.toString().split(',');
+                              if (sale == null)
+                                  innerhtml +=
 
-
-	 	$('#data2').dataTable( {
-		"ajax": "data/gistfile.json",
-		"columns": [
-		    { "data": "醫院" },
-			{ "data": "社福中心" },
-			{ "data": "辦公室電話" },
-			{ "data": "主任" },
-			{ "data": "主任手機" },
-			{ "data": "附註" }
-		]
-	} );
-
-      $.ajax({url: "https://gist.githubusercontent.com/tony1223/098e45623c73274f7ae3/raw", success: function(result){
-            var obj = $.parseJSON(result);
-            $("#lastmodify").html("最後更新時間: " + obj.lastmodify +"<br/>資料來源：北市府資訊局");
-        }});
+                                  "<div class='col-md-3' ><div class='panel panel-success'> <div class='panel-heading'><a target='_blank' href='http://google.com/search?q=" + gacha1 + "'><img alt='"
+                                  + gacha1 + "' title='" + gacha1 + "' src='http://shironeko.appbako.com/wiki/src/img/char/thum/card_"
+                                  + modellist[1] + "_0.png'></a>" + "<a target='_blank' href='http://google.com/search?q=" + gacha2 + "'><img alt='" + gacha2 + "'title='" + gacha2 + "' src='http://shironeko.appbako.com/wiki/src/img/char/thum/card_" + modellist[2] + "_0.png'></a>"
+                                   + "<a target='_blank' href='http://google.com/search?q=" + gacha3 + "'><img alt='" + gacha3 + "'title='" + gacha3 +
+                                   "' src='http://shironeko.appbako.com/wiki/src/img/char/thum/card_" + modellist[3] + "_0.png'></a></div>  <div class='panel-body'><span class='label label-info'>4星x"+va+"</span>&nbsp;<span class='label label-success '>尚未賣出</span></br></br>"+gacha1+"</br>"+gacha2+"</br>"+gacha3+"</div></div></div>"
 
 
 
-   $( "#tabs" ).tabs();
-     
-} );
+                              else
+                              innerhtml +=
+                              "<div class='col-md-3' ><div class='panel panel-danger'> <div class='panel-heading'><a target='_blank' href='http://google.com/search?q=" + gacha1 + "'><img alt='"
+                              + gacha1 + "' title='" + gacha1 + "' src='http://shironeko.appbako.com/wiki/src/img/char/thum/card_"
+                              + modellist[1] + "_0.png'></a>" + "<a target='_blank' href='http://google.com/search?q=" + gacha2 + "'><img alt='" + gacha2 + "'title='" + gacha2 + "' src='http://shironeko.appbako.com/wiki/src/img/char/thum/card_" + modellist[2] + "_0.png'></a>"
+                               + "<a target='_blank' href='http://google.com/search?q=" + gacha3 + "'><img alt='" + gacha3 + "'title='" + gacha3 +
+                               "' src='http://shironeko.appbako.com/wiki/src/img/char/thum/card_" + modellist[3] + "_0.png'></a></div>  <div class='panel-body'><span class='label label-info'>4星x"+va+"</span>&nbsp;<span class='label label-danger'>"+sale+"</span></br></br>"+gacha1+"</br>"+gacha2+"</br>"+gacha3+"</div></div></div>"
 
-
-	</script>
-</head>
-
-<body class="dt-example">
-
-		<div style="font-size:16px;"  id = "lastmodify"></div>
-	</br>
-
-	<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">傷者清單</a></li>
-    <li><a href="#tabs-2">醫院與社福中心聯絡資料</a></li>
-  </ul>
-  <div id="tabs-1">
-   <table id="data" class="display" cellspacing="0" width="100%">
-
-				<thead>
-					<tr>
-						
-						<th>縣市別</th>
-						<th>收治單位</th>
-						<th>姓名</th>
-						<th>檢傷編號</th>
-						<th>性別</th>
-						<th>國籍</th>
-						<th>年齡</th>
-						<th>醫療檢傷</th>
-						<th>救護檢傷</th>
-						<th>即時動向</th>
-						<th>轉診要求</th>
-						<th>刪除註記</th>
-					</tr>
-				</thead>
-
-				<tfoot>
-					<tr>
-						
-						<th>縣市別</th>
-						<th>收治單位</th>
-						<th>姓名</th>
-						<th>檢傷編號</th>
-						<th>性別</th>
-						<th>國籍</th>
-						<th>年齡</th>
-						<th>醫療檢傷</th>
-						<th>救護檢傷</th>
-						<th>即時動向</th>
-						<th>轉診要求</th>
-						<th>刪除註記</th>
-					</tr>
-				</tfoot>
-			</table>
-  </div>
-  <div id="tabs-2">
-<table id="data2" class="display" cellspacing="0" width="100%">
-				<thead>
-					<tr>
-						
-						<th>醫院</th>
-						<th>社福中心</th>
-						<th>辦公室電話</th>
-						<th>主任</th>
-						<th>主任手機</th>
-						<th>附註</th>
-						
-					</tr>
-				</thead>
-
-				<tfoot>
-					<tr>
-						
-						<th>醫院</th>
-						<th>社福中心</th>
-						<th>辦公室電話</th>
-						<th>主任</th>
-						<th>主任手機</th>
-						<th>附註</th>
-						
-					</tr>
-				</tfoot>
-			</table>
-
-  </div>
- 
-</div>
-
-	</div>
+                          }
+                      }
+                  }
+                  $('#test').html(innerhtml);
+                  console.log(innerhtml)
+              }
+          });
 
 
 
-</body>
+      </script>
+
+   <div id="test"></div>
+
+  </body>
+
 </html>
