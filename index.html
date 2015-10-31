@@ -30,7 +30,7 @@
           var query = new Parse.Query(usd);
           query.descending("createdAt");
           query.limit(10000);
-          query.greaterThanOrEqualTo("Valuable", 0);
+          query.greaterThanOrEqualTo("Valuable", 2);
           query.containsAll("CardModelID",choise);
 
 
@@ -123,7 +123,7 @@ function containsAll(needles, haystack){
       <div id="choise"></div>
       <button onclick="findaccount(choise)">查詢</button>
       <button onclick="choise_t='';$('#choise').html('');choise=[]">清除條件</button>
-    </br></br>    </br></br>   
+    </br></br>    </br></br>
    <div id="test"></div>
 
   </body>
