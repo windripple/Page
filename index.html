@@ -14,24 +14,22 @@
   <body>
 
 
-      <script>
+  <script>
       var choise_t = "";
       var choise = [];
       Parse.$ = jQuery;
-      Parse.initialize("wwvajpn5IdhxCbHbYUs5483nTo73hpGfhfu7DmVp", "COlDB7Lc8eXN9sKL9E9v19FG4X6UM70v7u77Jcbh");
+     Parse.initialize("U45tHUunPOBlrrwiJQNWmCQBe9PtYWja9Wa6Ndfc", "AG4gZ1O3gMDUJ1rRgmsYeHU1ylvnVTdmtcD7uu4n");
 
-          var innerhtml = '';
+    var innerhtml = '';
 
     function findaccount(choise)
     {
           innerhtml = '';
           $('#test').html("");
-          var usd = Parse.Object.extend("Event_new7000");
+          var usd = Parse.Object.extend("SB_Account_LV21");
           var query = new Parse.Query(usd);
-          query.descending("createdAt");
           query.limit(10000);
-          query.greaterThanOrEqualTo("Valuable", 2);
-          query.containsAll("CardModelID",choise);
+          query.containsAll("GachaSeq",choise);
 
 
 
@@ -39,64 +37,49 @@
               success: function (list) {
                   for (var i = 0; i < list.length; i++) {
                       var obj = list[i];
-                      var modelid = obj.get('CardModelID');
-                      var gacha1 = obj.get('freeGachaCard');
-                      var gacha2 = obj.get('GachaCard1');
-                      var Account = obj.get('Account');
+                      var GachaSeq = obj.get('GachaSeq');
+                      var gacha1 = "(" +GachaSeq[0]+") " + obj.get('gacha1').toString().substring(obj.get('gacha1').toString().indexOf(',')+1);
+                      var gacha2 = "(" +GachaSeq[1]+") " +obj.get('gacha2').toString().substring(obj.get('gacha2').toString().indexOf(',')+1);
+                      var gacha3 = "(" +GachaSeq[2]+") " +obj.get('gacha3').toString().substring(obj.get('gacha3').toString().indexOf(',')+1);
+                      var MDCode = obj.get('MDCode');
 
-                      var gacha3 = obj.get('GachaCard2');
-                      var sale = obj.get('Sale');
-                      var va = obj.get('Valuable');
-                      var objectid = obj.get('objectId');
+
                       console.log(gacha1)
 
 
 
-                              var modellist = modelid;
-
-                              if (sale == null)
-                              {
                                   innerhtml +=
 
-                                  "<div class='col-md-4' ><div class='panel panel-success'> <div class='panel-heading'>"
+                                  "<div class='col-md-3' ><div class='panel panel-success'> <div class='panel-heading'>"
 
                                     if(gacha1 != null){
                                     innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha1 + "'><img alt='"
-                                    + gacha1 + "' title='" + gacha1 + "' src='http://shironeko.appbako.com/wiki/src/img/char/card_"
-                                    + modellist[0] + "_0.png'></a>";
+                                    + gacha1 + "' title='" + gacha1 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[0]+".jpg'></a>";
 
                                     }
                                     if(gacha2 != null){
-                                    innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha2 + "'><img alt='" + gacha2 + "'title='" + gacha2 + "' src='http://shironeko.appbako.com/wiki/src/img/char/card_" + modellist[1] + "_0.png'></a>";
+                                    innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha2 + "'><img alt='"
+                                    + gacha2 + "' title='" + gacha2 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[1]+".jpg'></a>";
                                    }
 
                                    if(gacha3 != null){
-                                    innerhtml +=  "<a target='_blank' href='http://google.com/search?q=" + gacha3 + "'><img alt='" + gacha3 + "'title='" + gacha3 +
-                                    "' src='http://shironeko.appbako.com/wiki/src/img/char/card_" + modellist[2] + "_0.png'></a>"
+                                     innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha3 + "'><img alt='"
+                                     + gacha3 + "' title='" + gacha3 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[2]+".jpg'></a>";
                                   }
 
-                                    innerhtml += "<div class='text-right'>主帳號: "+Account+"</div></div> ";
+                                    innerhtml += "<div class='text-right'>主帳號:"+MDCode+"</div></div> ";
 
-                                      if(gacha1 != null){
-                                    innerhtml += "<h2>"+gacha1+"</h2>";
-                                  }
 
-                                    if(gacha2 != null){
-                                    innerhtml += "<h2>"+gacha2+"</h2>";
-                                  }
-
-                                  if(gacha3 != null){
-                                    innerhtml +=  "<h2>"+gacha3+"</h2>";
-                                  }
 
                                   innerhtml += "</div></div></div>";
 
 
-                                }
+
 
 
 
                   }
+                  console.log(innerhtml)
                   $('#test').html(innerhtml);
 
               }
@@ -113,21 +96,14 @@ function containsAll(needles, haystack){
 
 
       </script>
-      <img src="http://shironeko.appbako.com/wiki/src/img/char/card_20202470_0.png" onclick="choise.push(20202470);choise_t+='7000拳&nbsp;'; $('#choise').html(choise_t);">
-            <img src="http://shironeko.appbako.com/wiki/src/img/char/card_10702080_0.png" onclick="choise.push(10702080);choise_t+='7000雙刀&nbsp;'; $('#choise').html(choise_t);">
+    1: <input id="1" type="text" name="1" value=""><br>
+    2: <input id="2" type="text" name="2" value=""><br>
+    3: <input id="3" type="text" name="3" value=""><br>
 
-
-      <img src="http://shironeko.appbako.com/wiki/src/img/char/card_20802410_0.png" onclick="choise.push(20802410);choise_t+='女龍騎&nbsp;'; $('#choise').html(choise_t);">
-      <img src="http://shironeko.appbako.com/wiki/src/img/char/card_20702420_0.png" onclick="choise.push(20702420);choise_t+='女雙刀&nbsp;'; $('#choise').html(choise_t);">
-      <img src="http://shironeko.appbako.com/wiki/src/img/char/card_20802390_0.png" onclick="choise.push(20802390);choise_t+='小滴&nbsp;'; $('#choise').html(choise_t);">
-      <img src="http://shironeko.appbako.com/wiki/src/img/char/card_20302250_0.png" onclick="choise.push(20302250);choise_t+='大小姐&nbsp;'; $('#choise').html(choise_t);">
-      <img src="http://shironeko.appbako.com/wiki/src/img/char/card_20502270_0.png" onclick="choise.push(20502270);choise_t+='弓米拉&nbsp;'; $('#choise').html(choise_t);">
 
       </br>
       <div id="choise"></div>
-      <button onclick="findaccount(choise)">查詢</button>
-      <button onclick="choise_t='';$('#choise').html('');choise=[]">清除條件</button>
-    </br></br>    </br></br>
+      <button onclick="choise = [];if(document.getElementById('1').value != ''){choise.push(document.getElementById('1').value)};if(document.getElementById('2').value != ''){choise.push(document.getElementById('2').value)};if(document.getElementById('3').value != ''){choise.push(document.getElementById('3').value)};findaccount(choise)">查詢</button>
    <div id="test"></div>
 
   </body>
