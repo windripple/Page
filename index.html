@@ -39,9 +39,9 @@
                   for (var i = 0; i < list.length; i++) {
                       var obj = list[i];
                       var GachaSeq = obj.get('GachaSeq');
-                      var gacha1 = "(" +GachaSeq[0]+") " + obj.get('gacha1').toString().substring(obj.get('gacha1').toString().indexOf(',')+1);
-                      var gacha2 = "(" +GachaSeq[1]+") " +obj.get('gacha2').toString().substring(obj.get('gacha2').toString().indexOf(',')+1);
-                      var gacha3 = "(" +GachaSeq[2]+") " +obj.get('gacha3').toString().substring(obj.get('gacha3').toString().indexOf(',')+1);
+                      var gacha1 =  obj.get('gacha1').toString().substring(obj.get('gacha1').toString().indexOf(',')+1);
+                      var gacha2 = obj.get('gacha2').toString().substring(obj.get('gacha2').toString().indexOf(',')+1);
+                      var gacha3 = obj.get('gacha3').toString().substring(obj.get('gacha3').toString().indexOf(',')+1);
                       var MDCode = obj.get('MDCode');
 
 
@@ -68,11 +68,21 @@
                                      + gacha3 + "' title='" + gacha3 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[2]+".jpg'></a>";
                                   }
 
-                                    innerhtml += "<div class='text-right'>主帳號:"+MDCode+"</div></div> ";
+                                    innerhtml += "</br>";
 
+                                    if(gacha1 != null){
+                                  innerhtml += gacha1;
+                                }
 
+                                  if(gacha2 != null){
+                                  innerhtml += gacha2;
+                                }
 
-                                  innerhtml += "</div></div></div>";
+                                if(gacha3 != null){
+                                  innerhtml += gacha3;
+                                }
+
+                                  innerhtml += "<div class='text-right'>主帳號:"+MDCode+"</div></div> </div></div></div>";
 
 
 
