@@ -27,7 +27,7 @@
     {
           innerhtml = '';
           $('#test').html("");
-          var usd = Parse.Object.extend("SB_Account_LV21");
+          var usd = Parse.Object.extend("SB_Account_LV21_2");
           var query = new Parse.Query(usd);
           query.descending("createdAt");
           query.limit(10000);
@@ -43,6 +43,7 @@
                       var gacha1 =  obj.get('gacha1').toString().substring(obj.get('gacha1').toString().indexOf(',')+1);
                       var gacha2 = obj.get('gacha2').toString().substring(obj.get('gacha2').toString().indexOf(',')+1);
                       var gacha3 = obj.get('gacha3').toString().substring(obj.get('gacha3').toString().indexOf(',')+1);
+                      var gacha4 = obj.get('gacha4').toString().substring(obj.get('gacha4').toString().indexOf(',')+1);
                       var MDCode = obj.get('MDCode');
 
 
@@ -68,6 +69,11 @@
                                      innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha3 + "'><img alt='"
                                      + gacha3 + "' title='" + gacha3 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[2]+".jpg'></a>";
                                   }
+                                  if(gacha4 != null){
+                                    innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha4 + "'><img alt='"
+                                    + gacha4 + "' title='" + gacha4 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[3]+".jpg'></a>";
+                                 }
+
 
                                     innerhtml += "</br>";
 
@@ -81,6 +87,10 @@
 
                                 if(gacha3 != null){
                                   innerhtml += gacha3;
+                                }
+
+                                if(gacha4 != null){
+                                  innerhtml += gacha4;
                                 }
 
                                   innerhtml += "<div class='text-right'>主帳號:"+MDCode+"</div></div> </div></div></div>";
