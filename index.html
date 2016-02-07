@@ -29,6 +29,7 @@
           $('#test').html("");
           var usd = Parse.Object.extend("SB_Account_LV21");
           var query = new Parse.Query(usd);
+          query.descending("createdAt");
           query.limit(10000);
           query.containsAll("GachaSeq",choise);
 
