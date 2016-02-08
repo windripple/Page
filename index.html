@@ -27,7 +27,7 @@
     {
           innerhtml = '';
           $('#test').html("");
-          var usd = Parse.Object.extend("SB_Account_LV21_2");
+          var usd = Parse.Object.extend("SB_Account");
           var query = new Parse.Query(usd);
           query.descending("createdAt");
           query.limit(10000);
@@ -56,21 +56,21 @@
                                   "<div class='col-md-3' ><div class='panel panel-success'> <div class='panel-heading'>"
 
                                     if(gacha1 != null){
-                                    innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha1 + "'><img alt='"
+                                    innerhtml += "<a target='_blank' href='http://sb.yeeapps.com/02/monster_detial.php?monsters_id=" + GachaSeq[0] + "'><img alt='"
                                     + gacha1 + "' title='" + gacha1 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[0]+".jpg'></a>";
 
                                     }
                                     if(gacha2 != null){
-                                    innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha2 + "'><img alt='"
+                                    innerhtml += "<a target='_blank' href='http://sb.yeeapps.com/02/monster_detial.php?monsters_id=" + GachaSeq[1] +"'><img alt='"
                                     + gacha2 + "' title='" + gacha2 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[1]+".jpg'></a>";
                                    }
 
                                    if(gacha3 != null){
-                                     innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha3 + "'><img alt='"
+                                     innerhtml += "<a target='_blank' href='http://sb.yeeapps.com/02/monster_detial.php?monsters_id=" + GachaSeq[2] + "'><img alt='"
                                      + gacha3 + "' title='" + gacha3 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[2]+".jpg'></a>";
                                   }
                                   if(gacha4 != null){
-                                    innerhtml += "<a target='_blank' href='http://google.com/search?q=" + gacha4 + "'><img alt='"
+                                    innerhtml += "<a target='_blank' href='http://sb.yeeapps.com/02/monster_detial.php?monsters_id=" + GachaSeq[3] + "'><img alt='"
                                     + gacha4 + "' title='" + gacha4 + "' src='http://yeeapps.com/images/sbmonster/image"+GachaSeq[3]+".jpg'></a>";
                                  }
 
