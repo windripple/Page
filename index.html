@@ -27,11 +27,11 @@
     {
           innerhtml = '';
           $('#test').html("");
-          var usd = Parse.Object.extend("SB_Account");
+          var usd = Parse.Object.extend("SB_0212");
           var query = new Parse.Query(usd);
           query.descending("createdAt");
           query.limit(10000);
-          query.containsAll("GachaSeq",choise);
+          //query.containsAll("GachaSeq",choise);
 
 
 
@@ -42,12 +42,13 @@
                       var GachaSeq = obj.get('GachaSeq');
                       var gacha1 =  obj.get('gacha1').toString().substring(obj.get('gacha1').toString().indexOf(',')+1);
                       var gacha2 = obj.get('gacha2').toString().substring(obj.get('gacha2').toString().indexOf(',')+1);
-                      var gacha3 = obj.get('gacha3').toString().substring(obj.get('gacha3').toString().indexOf(',')+1);
-                      var gacha4 = obj.get('gacha4').toString().substring(obj.get('gacha4').toString().indexOf(',')+1);
+                     var gacha3 = null//obj.get('gacha3').toString().substring(obj.get('gacha3').toString().indexOf(',')+1);
+                     var gacha4 = null//obj.get('gacha4').toString().substring(obj.get('gacha4').toString().indexOf(',')+1);
                       var MDCode = obj.get('MDCode');
 
+                    //  var total = parseInt(gacha1.substring(0,1))+parseInt(gacha2.substring(0,1))+parseInt(gacha3.substring(0,1))+parseInt(gacha4.substring(0,1))
 
-                      console.log(gacha1)
+
 
 
 
@@ -99,7 +100,6 @@
 
 
 
-
                   }
                   console.log(innerhtml)
                   $('#test').html(innerhtml);
@@ -120,8 +120,8 @@ function containsAll(needles, haystack){
       </script>
     <span class="label label-default">首三抽帳號</span><span class="label label-danger">召喚圖板</span>
     <input id="1" class="col-lg-3 form-control" type="text" name="1" value="758" placeholder="棋寵編號1">
-    <input id="2" class="col-lg-3 form-control" type="text" name="2" value="570" placeholder="棋寵編號2">
-    <input id="3" class="col-lg-3 form-control" type="text" name="3" value="862" placeholder="棋寵編號3">
+    <input id="2" class="col-lg-3 form-control" type="text" name="2" value="862" placeholder="棋寵編號2">
+    <input id="3" style="display:none" class="col-lg-3 form-control" type="text" name="3" value="862" placeholder="棋寵編號3">
 
       <div id="choise"></div>
         <button class="btn btn-primary" onclick="choise = [];if(document.getElementById('1').value != ''){choise.push(document.getElementById('1').value)};if(document.getElementById('2').value != ''){choise.push(document.getElementById('2').value)};if(document.getElementById('3').value != ''){choise.push(document.getElementById('3').value)};findaccount(choise)">查詢</button>
